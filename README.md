@@ -1,4 +1,4 @@
-# Kalpurush — কলপুরুষ
+# Kalpurush — কালপুরুষ
 
 > A free, open-source **Bengali display typeface** with six styles —
 > **Regular, SemiBold, Bold** and their **Italics** — generated from
