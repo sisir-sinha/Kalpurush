@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
 <meta charset="utf-8">
-<title>Kalpurush — কলপুরুষ · specimen &amp; documentation</title>
+<title>Kalpurush — কালপুরুষ · specimen &amp; documentation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Kalpurush is a free open-source Bengali display typeface with six styles. Interactive specimen, sandbox and documentation.">
 <link rel="stylesheet" href="kalpurush.cdn.css">
@@ -109,19 +109,38 @@
     border:1px solid var(--line); border-radius:8px; padding:.25rem .5rem;
   }
   .controls .val{font:13px/1 ui-sans-serif,system-ui,sans-serif; color:var(--gold); min-width:4.2rem; display:inline-block}
-  #sb-text{
-    width:100%; min-height:7rem; resize:vertical;
-    font:15px/1.5 ui-monospace,"Cascadia Mono",Menlo,monospace;
-    color:var(--text); background:var(--panel2); border:1px solid var(--line);
-    border-radius:12px; padding:.7rem .9rem;
+  /* ---------- wysiwyg toolbar ---------- */
+  .toolbar{
+    display:flex; flex-wrap:wrap; gap:.5rem .9rem; align-items:center;
+    padding:.7rem .9rem; background:var(--panel2); border:1px solid var(--line); border-radius:12px;
   }
-  #sb-preview{
+  .tb-group{display:flex; align-items:center; gap:.35rem}
+  .tb-label{font:12.5px/1.4 ui-sans-serif,system-ui,sans-serif; color:var(--muted)}
+  .toolbar button{
+    font:13px/1.3 ui-sans-serif,system-ui,sans-serif; cursor:pointer;
+    color:var(--text); background:var(--panel); border:1px solid var(--line);
+    border-radius:8px; padding:.35rem .65rem;
+  }
+  .toolbar button:hover{border-color:var(--gold)}
+  .toolbar button.primary{background:var(--gold); color:#1a1505; border-color:var(--gold); font-weight:600}
+  .toolbar select{
+    font:13px/1.3 ui-sans-serif,system-ui,sans-serif; color:var(--text); background:var(--panel);
+    border:1px solid var(--line); border-radius:8px; padding:.25rem .45rem;
+  }
+  .toolbar input[type=range]{width:6rem; accent-color:var(--gold)}
+  .toolbar input[type=color]{width:2.6rem; height:1.9rem; padding:0; border:1px solid var(--line); border-radius:8px; background:var(--panel)}
+  .tb-right{margin-left:auto}
+  .wy-editor{
     min-height:9rem; padding:1.4rem 1.6rem; border-radius:12px;
-    background:linear-gradient(180deg, #151923 0%, #10131a 100%);
-    border:1px solid var(--line);
-    white-space:pre-wrap; word-break:break-word;
-    font-size:34px; font-weight:400; font-style:normal; line-height:1.6; letter-spacing:normal;
+    background:linear-gradient(180deg,#151923 0%,#10131a 100%);
+    border:1px solid var(--line); outline:none;
+    font-size:32px; font-weight:400; font-style:normal; line-height:1.6; letter-spacing:normal; color:var(--text);
   }
+  .wy-editor:focus{border-color:var(--gold)}
+  .wy-editor:empty:before{content:attr(data-placeholder); color:var(--muted)}
+  #wy-export-wrap{margin-top:1rem}
+  .toolbar-label{font:12.5px/1.4 ui-sans-serif,system-ui,sans-serif; color:var(--gold); margin-bottom:.4rem}
+  #wy-export-code{margin:0}
   .presets{display:flex; flex-wrap:wrap; gap:.5rem}
   .presets button{
     font:13px/1.3 ui-sans-serif,system-ui,sans-serif; cursor:pointer;
@@ -191,7 +210,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <h1>Kalpurush<span class="bn">কলপুরুষ</span></h1>
+    <h1>Kalpurush<span class="bn">কালপুরুষ</span></h1>
     <p class="tag">A free, open-source Bengali display typeface — six styles, one family.
     Regular, SemiBold, Bold and their italics, generated from Kalpurush Regular v0.258
     by Tanbin Islam Siyam.</p>
@@ -257,25 +276,57 @@
 
 <!-- ==================== SANDBOX ==================== -->
 <section id="sandbox">
-  <h2><span class="n">03</span> Sandbox — live type tester</h2>
-  <p class="lead">Type or paste anything — Bengali, English, or mixed — and watch it render in
-  Kalpurush in real time. The whole tester runs in your browser; fonts load from the CDN
-  (<code>kalpurush.cdn.css</code>).</p>
+  <h2><span class="n">03</span> Sandbox — free WYSIWYG editor</h2>
+  <p class="lead">Type or paste anything — Bengali, English, or mixed — and format it live, right in
+  the page. No iframe, no sandbox: the editor is the preview. Select text and click a toolbar button to
+  style it; with nothing selected, the style applies to the whole text. Fonts load from the CDN
+  (<code>kalpurush.cdn.css</code>). Export the result as ready-to-use HTML.</p>
 
   <div class="sandbox-grid">
     <div class="panel">
-      <div class="controls">
-        <label>Size <input type="range" id="sb-size" min="14" max="96" value="34"><span class="val" id="sb-size-v">34 px</span></label>
-        <label>Weight
-          <select id="sb-weight">
-            <option value="400">400 Regular</option>
-            <option value="600">600 SemiBold</option>
-            <option value="700">700 Bold</option>
-          </select>
-        </label>
-        <label><input type="checkbox" id="sb-italic"> Italic</label>
-        <label>Line <input type="range" id="sb-lh" min="1" max="2.4" step="0.1" value="1.6"><span class="val" id="sb-lh-v">1.6</span></label>
-        <label>Tracking <input type="range" id="sb-ls" min="-0.03" max="0.25" step="0.01" value="0"><span class="val" id="sb-ls-v">0.00</span></label>
+      <div class="toolbar" role="toolbar" aria-label="Formatting">
+        <div class="tb-group">
+          <span class="tb-label">Weight</span>
+          <button data-style="font-weight" data-value="400">Regular</button>
+          <button data-style="font-weight" data-value="600">SemiBold</button>
+          <button data-style="font-weight" data-value="700">Bold</button>
+        </div>
+        <div class="tb-group">
+          <button data-style="font-style" data-value="italic">Italic</button>
+          <button data-style="font-style" data-value="normal">Normal</button>
+        </div>
+        <div class="tb-group">
+          <label class="tb-label">Size
+            <select id="wy-size">
+              <option value="18">18 px</option>
+              <option value="24">24 px</option>
+              <option value="32" selected>32 px</option>
+              <option value="48">48 px</option>
+              <option value="64">64 px</option>
+            </select>
+          </label>
+          <label class="tb-label">Line
+            <select id="wy-lh">
+              <option value="1.2">1.2</option>
+              <option value="1.4">1.4</option>
+              <option value="1.6" selected>1.6</option>
+              <option value="1.8">1.8</option>
+              <option value="2.0">2.0</option>
+            </select>
+          </label>
+          <label class="tb-label">Tracking
+            <input type="range" id="wy-ls" min="-0.03" max="0.2" step="0.01" value="0">
+            <span id="wy-ls-v">0.00</span>
+          </label>
+          <label class="tb-label">Color
+            <input type="color" id="wy-color" value="#e9e9f0" aria-label="Text color">
+          </label>
+        </div>
+        <div class="tb-group tb-right">
+          <button id="wy-clear">Clear</button>
+          <button id="wy-export" class="primary">Export HTML</button>
+          <button id="wy-copy">Copy</button>
+        </div>
       </div>
 
       <div class="presets" style="margin:1rem 0 .7rem">
@@ -283,21 +334,25 @@
         <button data-preset="pangram">বাংলাদেশের প্রধানমন্ত্রী শেখ হাসিনা বাংলাদেশের প্রধানমন্ত্রী।</button>
         <button data-preset="conjuncts">ক্ষ শ্রী দ্ধ ন্ত্র ষ্ট্র স্ব র্ক্ষ</button>
         <button data-preset="latin">The quick brown fox jumps over the lazy dog. 0123456789</button>
-        <button data-preset="mixed">কলপুরুষ Kalpurush — ফন্ট ২০২৬ · font</button>
+        <button data-preset="mixed">কালপুরুষ Kalpurush — ফন্ট ২০২৬ · font</button>
       </div>
 
-      <textarea id="sb-text" spellcheck="false">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello Kalpurush 2026</textarea>
+      <div id="wy-editor" class="wy-editor" contenteditable="true" spellcheck="false"
+           data-placeholder="Type here — select text and use the toolbar above">কালপুরুষ বাংলাদেশ — বাংলা ফন্ট ২০২৬ · Kalpurush WYSIWYG</div>
 
-      <div id="sb-preview" aria-live="polite"></div>
+      <p class="sb-meta" id="wy-meta"></p>
 
-      <p class="sb-meta" id="sb-meta"></p>
+      <div id="wy-export-wrap" hidden>
+        <div class="toolbar-label">Exported HTML — copy into your site</div>
+        <pre id="wy-export-code"></pre>
+      </div>
     </div>
 
     <div class="sandboxed-demo">
       <div class="panel">
         <strong>Sandboxed preview</strong> — an isolated <code>&lt;iframe sandbox="allow-scripts"&gt;</code>
         rendering the font in a neutral document, the way a third-party embed would see it:
-        <iframe sandbox="allow-scripts" srcdoc="&lt;!doctype html&gt;&lt;html lang=&quot;bn&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/kalpurush.cdn.css&quot;&gt;&lt;style&gt;body{margin:0;padding:1.4rem 1.6rem;font-family:'Kalpurush',serif;font-size:2.2rem;font-weight:700;color:#e9e9f0;background:#14181f}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;কলপুরুষ বাংলাদেশ — Kalpurush sandbox preview&lt;/body&gt;&lt;/html&gt;"></iframe>
+        <iframe sandbox="allow-scripts" srcdoc="&lt;!doctype html&gt;&lt;html lang=&quot;bn&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/kalpurush.cdn.css&quot;&gt;&lt;style&gt;body{margin:0;padding:1.4rem 1.6rem;font-family:'Kalpurush',serif;font-size:2.2rem;font-weight:700;color:#e9e9f0;background:#14181f}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;কালপুরুষ বাংলাদেশ — Kalpurush sandbox preview&lt;/body&gt;&lt;/html&gt;"></iframe>
         <p class="sandbox-note">The iframe above uses the HTML <code>sandbox</code> attribute: it has no access to
         this page's scripts or styles — only the CDN font. This mirrors how the font behaves when
         embedded in a sandboxed widget.</p>
@@ -312,7 +367,7 @@
   <p class="lead">Kalpurush as a reading face at body size — generous counters, clear matras,
   unchanged shaping from the original.</p>
   <div class="panel typeset">
-    <p><span class="drop">ক</span>লপুরুষ একটি উন্মুক্ত সুত্রে প্রকাশিত বাংলা ডিসপ্লে ফন্ট। বাংলাদেশের স্বাধীনতা যুদ্ধ থেকে শুরু করে আধুনিক ডিজাইনের সব স্তরে বাংলা লেখার গুণমান ধরে রাখার জন্য এটি তৈরি করা হয়েছে। সাধারণ, অভিব্যক্তিশীল ও আনুষ্ঠানিক — প্রতিটি ক্ষেত্রে স্থিতিশীল।</p>
+    <p><span class="drop">কা</span>লপুরুষ একটি উন্মুক্ত সুত্রে প্রকাশিত বাংলা ডিসপ্লে ফন্ট। বাংলাদেশের স্বাধীনতা যুদ্ধ থেকে শুরু করে আধুনিক ডিজাইনের সব স্তরে বাংলা লেখার গুণমান ধরে রাখার জন্য এটি তৈরি করা হয়েছে। সাধারণ, অভিব্যক্তিশীল ও আনুষ্ঠানিক — প্রতিটি ক্ষেত্রে স্থিতিশীল।</p>
     <p style="font-style:italic;margin-top:.8rem"><span class="drop" style="font-style:italic">ঐ</span>তিহ্য ও আধুনিকতার মধ্যে সংলগ্ন এক ফন্ট — যা পুরোনো বাংলা জিরো থেকে শুরু করে আজকের স্ক্রিনের দিকে হাঁটে চলেছে। চোখে ধরা পড়ে না, কানে শোনা যায় — বাংলা লেখায় তার ভাব।</p>
   </div>
 </section>
@@ -432,7 +487,7 @@ python source/build_kalpurush.py Kalpurush.ttf out</pre>
 <footer>
   <div class="wrap">
     <div>
-      <div style="font-size:1.6rem;font-weight:700">Kalpurush · কলপুরুষ</div>
+      <div style="font-size:1.6rem;font-weight:700">Kalpurush · কালপুরুষ</div>
       <div>Open-source Bengali display typeface · SIL OFL 1.0 · v0.258 + synthetic styles</div>
     </div>
     <div>
@@ -447,58 +502,141 @@ python source/build_kalpurush.py Kalpurush.ttf out</pre>
 
 <script>
 (function(){
-  var text    = document.getElementById('sb-text');
-  var preview = document.getElementById('sb-preview');
-  var meta    = document.getElementById('sb-meta');
-  var size    = document.getElementById('sb-size');
-  var weight  = document.getElementById('sb-weight');
-  var italic  = document.getElementById('sb-italic');
-  var lh      = document.getElementById('sb-lh');
-  var ls      = document.getElementById('sb-ls');
-
-  function render(){
-    var t = text.value;
-    preview.textContent = t || '—';
-    preview.style.fontSize = size.value + 'px';
-    preview.style.fontWeight = weight.value;
-    preview.style.fontStyle = italic.checked ? 'italic' : 'normal';
-    preview.style.lineHeight = lh.value;
-    preview.style.letterSpacing = ls.value + 'em';
-
-    document.getElementById('sb-size-v').textContent = size.value + ' px';
-    document.getElementById('sb-lh-v').textContent = lh.value;
-    document.getElementById('sb-ls-v').textContent = (+ls.value).toFixed(2);
-
-    var chars = t.length;
-    var bn = 0;
-    for (var i = 0; i < chars; i++){
-      var c = t.charCodeAt(i);
-      if (c >= 0x0980 && c <= 0x09FF) bn++;
-    }
-    meta.innerHTML = chars + ' characters · ' + bn + ' Bengali · ' +
-      (chars - bn) + ' other';
-  }
+  var editor  = document.getElementById('wy-editor');
+  var meta    = document.getElementById('wy-meta');
+  var sizeSel = document.getElementById('wy-size');
+  var lhSel   = document.getElementById('wy-lh');
+  var ls      = document.getElementById('wy-ls');
+  var lsv     = document.getElementById('wy-ls-v');
+  var colorIn = document.getElementById('wy-color');
 
   var presets = {
     bengali:  'বাংলাদেশের স্বাধীনতা যুদ্ধ — বাংলাদেশ স্বাধীন, সমৃদ্ধ ও গণতান্ত্রিক।',
     pangram:  'বাংলাদেশের প্রধানমন্ত্রী শেখ হাসিনা বাংলাদেশের প্রধানমন্ত্রী।',
     conjuncts:'ক্ষ শ্রী দ্ধ ন্ত্র ষ্ট্র স্ব র্ক্ষ কু কৃ গু শু জ্ঞ হ্য ব্য ক্ল গ্র স্ম',
     latin:    'The quick brown fox jumps over the lazy dog. 0123456789 — “Hello!”',
-    mixed:    'কলপুরুষ Kalpurush — ফন্ট ২০২৬ · font · সব কিছু'
+    mixed:    'কালপুরুষ Kalpurush — ফন্ট ২০২৬ · font · সব কিছু'
   };
 
-  text.addEventListener('input', render);
-  [size, weight, italic, lh, ls].forEach(function(el){
-    el.addEventListener('input', render);
-    el.addEventListener('change', render);
-  });
-  document.querySelectorAll('.presets button').forEach(function(btn){
+  function sel(){ return window.getSelection(); }
+
+  /* Wrap the current selection in a styled span. Returns false when the
+     selection is collapsed (or absent) — then the caller applies the style
+     to the whole editor instead. */
+  function wrapSelection(prop, value){
+    var s = sel();
+    if (s && s.rangeCount && !s.isCollapsed){
+      var range = s.getRangeAt(0);
+      var span = document.createElement('span');
+      span.style[prop] = value;
+      try {
+        range.surroundContents(span);
+      } catch(e){
+        /* selection spans several elements — extract, wrap, re-insert */
+        var frag = range.extractContents();
+        span.appendChild(frag);
+        range.insertNode(span);
+      }
+      updateMeta();
+      return true;
+    }
+    return false;
+  }
+
+  function applyStyle(prop, value){
+    if (!wrapSelection(prop, value)){
+      editor.style[prop] = value;
+    }
+    updateMeta();
+  }
+
+  /* toolbar buttons: weight + italic */
+  document.querySelectorAll('[data-style]').forEach(function(btn){
     btn.addEventListener('click', function(){
-      text.value = presets[btn.dataset.preset];
-      render();
+      applyStyle(btn.dataset.style, btn.dataset.value);
     });
   });
-  render();
+
+  /* size / line / tracking / color */
+  sizeSel.addEventListener('change', function(){ applyStyle('font-size', this.value + 'px'); });
+  lhSel.addEventListener('change', function(){ applyStyle('line-height', this.value); });
+  colorIn.addEventListener('input', function(){ applyStyle('color', this.value); });
+  ls.addEventListener('input', function(){
+    lsv.textContent = (+this.value).toFixed(2);
+    applyStyle('letter-spacing', this.value + 'em');
+  });
+
+  /* presets fill the editor */
+  document.querySelectorAll('.presets button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      editor.innerHTML = '<br>' + presets[btn.dataset.preset];
+      updateMeta();
+      editor.focus();
+    });
+  });
+
+  /* clear all formatting (unwrap spans + reset root styles) */
+  document.getElementById('wy-clear').addEventListener('click', function(){
+    editor.innerHTML = '<br>';
+    editor.style.cssText = '';
+    sizeSel.value = '32'; lhSel.value = '1.6'; ls.value = '0'; lsv.textContent = '0.00';
+    colorIn.value = '#e9e9f0';
+    updateMeta();
+    editor.focus();
+  });
+
+  /* export the composed text as ready-to-use HTML */
+  function exportHTML(){
+    var s = editor.style;
+    var css = 'font-family:\'Kalpurush\', serif; font-size: ' + (s.fontSize || '32px') +
+              '; font-weight: ' + (s.fontWeight || '400') +
+              '; font-style: ' + (s.fontStyle || 'normal') +
+              '; line-height: ' + (s.lineHeight || '1.6') +
+              '; letter-spacing: ' + (s.letterSpacing || '0em') +
+              '; color: ' + (s.color || '#e9e9f0');
+    return '<p style="' + css + '">\n  ' + editor.innerHTML.replace(/\n/g, '') + '\n</p>';
+  }
+
+  function doExport(){
+    document.getElementById('wy-export-code').textContent = exportHTML();
+    document.getElementById('wy-export-wrap').hidden = false;
+  }
+  document.getElementById('wy-export').addEventListener('click', doExport);
+
+  /* copy the exported HTML to the clipboard */
+  document.getElementById('wy-copy').addEventListener('click', function(){
+    var code = document.getElementById('wy-export-code').textContent || exportHTML();
+    function done(){
+      var b = document.getElementById('wy-copy');
+      var old = b.textContent;
+      b.textContent = 'Copied!';
+      setTimeout(function(){ b.textContent = old; }, 1200);
+    }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = code; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta); done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(code).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+
+  /* character / Bengali counter */
+  function updateMeta(){
+    var t = editor.innerText;
+    var chars = t.length;
+    var bn = 0;
+    for (var i = 0; i < chars; i++){
+      var c = t.charCodeAt(i);
+      if (c >= 0x0980 && c <= 0x09FF) bn++;
+    }
+    meta.innerHTML = chars + ' characters · ' + bn + ' Bengali · ' + (chars - bn) + ' other';
+  }
+  editor.addEventListener('input', updateMeta);
+  updateMeta();
 })();
 </script>
 </body>

@@ -1,4 +1,4 @@
-# Kalpurush — কলপুরুষ
+# Kalpurush — কালপুরুষ
 
 > A free, open-source **Bengali display typeface** with six styles —
 > **Regular, SemiBold, Bold** and their **Italics** — generated from
@@ -15,9 +15,10 @@
 ## Documentation
 
 - **Interactive specimen & documentation — [`specimen.html`](specimen.html)**
-  Open it in a browser: all six styles, the conjunct/matra stress test, a **live sandbox**
-  (type anything and see it render in real time), the full character set, metrics, and
-  install guides. Fonts load from the **CDN** (`kalpurush.cdn.css`), so it works on any host.
+  Open it in a browser: all six styles, the conjunct/matra stress test, a **free WYSIWYG
+  editor** (type and format text in-place — weight, italic, size, line height, tracking,
+  color — and export the result as ready-to-use HTML), the full character set, metrics,
+  and install guides. Fonts load from the **CDN** (`kalpurush.cdn.css`), so it works on any host.
 - **Homepage — [`index.html`](index.html)**
   Landing page for the Jekyll/GitHub Pages site. It links straight to the specimen.
 - **CDN stylesheet — [`kalpurush.cdn.css`](kalpurush.cdn.css)**
