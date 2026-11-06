@@ -1,0 +1,29 @@
+// Kalpurush family: Regular 400 / SemiBold 600 / Bold 700, each with Italic.
+// Usage in Vue/SCSS:  @use "./kalpurush";   then   font-family: "Kalpurush", sans-serif;
+// Set $kalpurush-path before @use if your fonts live elsewhere:
+//   @use "./kalpurush" with ($kalpurush-path: "/assets/fonts");
+
+$kalpurush-path: "./woff2" !default;
+$kalpurush-ttf-path: "./ttf" !default;
+
+// (file suffix, weight, style)
+$kalpurush-faces: (
+  ("Regular",        400, normal),
+  ("SemiBold",       600, normal),
+  ("Bold",           700, normal),
+  ("Italic",         400, italic),
+  ("SemiBoldItalic", 600, italic),
+  ("BoldItalic",     700, italic)
+);
+
+@each $file, $weight, $style in $kalpurush-faces {
+  @font-face {
+    font-family: "Kalpurush";
+    font-style: $style;
+    font-weight: $weight;
+    font-display: swap;
+    src:
+      url("#{$kalpurush-path}/Kalpurush-#{$file}.woff2") format("woff2"),
+      url("#{$kalpurush-ttf-path}/Kalpurush-#{$file}.ttf") format("truetype");
+  }
+}

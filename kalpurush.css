@@ -1,0 +1,47 @@
+@font-face {
+  font-family: "Kalpurush";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./woff2/Kalpurush-Regular.woff2") format("woff2"), url("./ttf/Kalpurush-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalpurush";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./woff2/Kalpurush-SemiBold.woff2") format("woff2"), url("./ttf/Kalpurush-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalpurush";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./woff2/Kalpurush-Bold.woff2") format("woff2"), url("./ttf/Kalpurush-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalpurush";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./woff2/Kalpurush-Italic.woff2") format("woff2"), url("./ttf/Kalpurush-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalpurush";
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./woff2/Kalpurush-SemiBoldItalic.woff2") format("woff2"), url("./ttf/Kalpurush-SemiBoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalpurush";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./woff2/Kalpurush-BoldItalic.woff2") format("woff2"), url("./ttf/Kalpurush-BoldItalic.ttf") format("truetype");
+}
