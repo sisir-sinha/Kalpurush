@@ -1,0 +1,74 @@
+/*
+  Kalpurush — CDN @font-face rules
+  ===============================
+  Load the whole Kalpurush family straight from the CDN — no local font
+  files required. Font binaries are served by jsDelivr, which mirrors this
+  GitHub repository (https://github.com/sisir-sinha/Kalpurush).
+
+  Usage:
+    <link rel="stylesheet" href="kalpurush.cdn.css">
+    <style> body { font-family: "Kalpurush", serif; } </style>
+
+  Weights:   400 Regular / 600 SemiBold / 700 Bold
+  Styles:    normal / italic  (each weight comes in both)
+  font-display: swap — text shows in a fallback immediately and swaps to
+  Kalpurush once the font has loaded.
+
+  Alternative CDN — GitHub Pages (once Jekyll Pages is live):
+    https://sisir-sinha.github.io/Kalpurush/woff2/Kalpurush-Regular.woff2
+  jsDelivr works before Pages is enabled and is generally faster.
+*/
+
+@font-face {
+  font-family: "Kalpurush";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/woff2/Kalpurush-Regular.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/ttf/Kalpurush-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalpurush";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/woff2/Kalpurush-SemiBold.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/ttf/Kalpurush-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalpurush";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/woff2/Kalpurush-Bold.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/ttf/Kalpurush-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalpurush";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/woff2/Kalpurush-Italic.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/ttf/Kalpurush-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalpurush";
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/woff2/Kalpurush-SemiBoldItalic.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/ttf/Kalpurush-SemiBoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalpurush";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/woff2/Kalpurush-BoldItalic.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/ttf/Kalpurush-BoldItalic.ttf") format("truetype");
+}

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<title>Kalpurush — কলপুরুষ · Bengali display typeface</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kalpurush is a free open-source Bengali display typeface with six styles. Open the interactive specimen and documentation.">
+<link rel="stylesheet" href="kalpurush.cdn.css">
+<style>
+  :root{
+    --bg:#10131a; --panel:#191d27; --panel2:#20252f; --line:#2c3341;
+    --text:#e9e9f0; --muted:#9aa1b2; --gold:#d8a64a; --green:#49b07a;
+    --blue:#6ea8e8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Kalpurush", Georgia, serif;
+    font-size:18px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  small{font-family:ui-sans-serif, system-ui, sans-serif}
+  a{color:var(--blue)}
+  .wrap{max-width:62rem; margin:0 auto; padding:0 1.2rem}
+
+  header{
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(1200px 420px at 20% -10%, #1d2536 0%, transparent 60%), var(--bg);
+    padding:5rem 0 4rem;
+  }
+  header h1{margin:0; font-size:5rem; font-weight:700; line-height:1.05}
+  header h1 .bn{display:block; font-weight:400; font-size:3.2rem; color:var(--gold)}
+  header .tag{margin-top:1.1rem; font-size:1.2rem; color:var(--muted); max-width:44rem}
+  .badges{margin-top:1.4rem; display:flex; gap:.5rem; flex-wrap:wrap}
+  .badge{
+    font:13px/1.4 ui-sans-serif,system-ui,sans-serif; border:1px solid var(--line);
+    color:var(--muted); padding:.3rem .7rem; border-radius:999px; background:var(--panel);
+  }
+  .badge b{color:var(--text); font-weight:600}
+
+  main{padding:3.5rem 0; border-bottom:1px solid var(--line)}
+  h2{font-size:1.5rem; font-weight:600; margin:0 0 .6rem}
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:1rem}
+  .card{
+    display:block; text-decoration:none; color:inherit;
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:1.4rem 1.5rem;
+  }
+  .card:hover{border-color:var(--gold); transform:translateY(-2px); transition:.15s}
+  .card .t{font-size:1.5rem; font-weight:700}
+  .card .d{margin-top:.4rem; color:var(--muted); font:14px/1.55 ui-sans-serif,system-ui,sans-serif}
+  .card .go{margin-top:.9rem; font:14px/1 ui-sans-serif,system-ui,sans-serif; color:var(--gold)}
+  .card.primary{background:linear-gradient(160deg,#1c2330 0%, #151922 70%)}
+  .card.primary .t{font-size:2rem}
+
+  .features{display:grid; grid-template-columns:repeat(auto-fit,minmax(12rem,1fr)); gap:.7rem; margin-top:1.6rem}
+  .feature{background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:.9rem 1rem}
+  .feature .k{font:12px/1.4 ui-sans-serif,system-ui,sans-serif; color:var(--muted); letter-spacing:.04em; text-transform:uppercase}
+  .feature .v{font-size:1.25rem; font-weight:700; margin-top:.15rem}
+
+  figure{margin:2.5rem 0 0; text-align:center}
+  figure img{
+    max-width:100%; border:1px solid var(--line); border-radius:14px;
+    background:#151923; padding:1rem;
+  }
+  figcaption{font:13px/1.5 ui-sans-serif,system-ui,sans-serif; color:var(--muted); margin-top:.6rem}
+
+  footer{padding:2.5rem 0 3.5rem; color:var(--muted)}
+  footer b{color:var(--text); font-weight:600}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Kalpurush<span class="bn">কলপুরুষ</span></h1>
+    <p class="tag">A free, open-source Bengali display typeface — six styles, one family.
+    Regular, SemiBold, Bold and their italics, generated from Kalpurush Regular v0.258
+    by Tanbin Islam Siyam.</p>
+    <div class="badges">
+      <span class="badge"><b>6 styles</b> · 400 / 600 / 700 + italics</span>
+      <span class="badge"><b>586 glyphs</b> · 91 Bengali · 95 Latin</span>
+      <span class="badge"><b>SIL OFL 1.0</b> · no Reserved Font Name</span>
+      <span class="badge"><b>Web-ready</b> · woff2 + ttf + CDN</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="cards">
+      <a class="card primary" href="specimen.html">
+        <div class="t">Specimen &amp; documentation →</div>
+        <div class="d">Open the full specimen — all six styles, conjunct &amp; matra stress tests,
+        live sandbox, character set, metrics and install guides.</div>
+        <div class="go">specimen.html</div>
+      </a>
+      <a class="card" href="https://github.com/sisir-sinha/Kalpurush">
+        <div class="t">Source repository</div>
+        <div class="d">Fonts, build script, Jekyll workflow and history on GitHub.</div>
+        <div class="go">github.com/sisir-sinha/Kalpurush →</div>
+      </a>
+    </div>
+
+    <h2 style="margin-top:2.6rem">At a glance</h2>
+    <div class="features">
+      <div class="feature"><div class="k">Styles</div><div class="v">Regular · SemiBold · Bold + Italics</div></div>
+      <div class="feature"><div class="k">Web fonts</div><div class="v">woff2 &amp; ttf · CDN ready</div></div>
+      <div class="feature"><div class="k">Layout tables</div><div class="v">GSUB / GPOS kept intact</div></div>
+      <div class="feature"><div class="k">License</div><div class="v">SIL OFL 1.0 · free for commercial use</div></div>
+    </div>
+
+    <figure>
+      <img src="preview.png" alt="Kalpurush font preview">
+      <figcaption>Kalpurush in use — see the full specimen for live tests.</figcaption>
+    </figure>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>Kalpurush · কলপুরুষ</b> — open-source Bengali display typeface · SIL OFL 1.0<br>
+    Designed by Tanbin Islam Siyam (Avro Font Development Project) · SemiBold/Bold/Italic are synthetic variants ·
+    <a href="specimen.html">Specimen</a> · <a href="https://github.com/sisir-sinha/Kalpurush">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>

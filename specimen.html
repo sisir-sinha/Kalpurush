@@ -1,23 +1,505 @@
 <!doctype html>
-<html lang="bn"><head><meta charset="utf-8"><title>Kalpurush family specimen</title>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<title>Kalpurush — কলপুরুষ · specimen &amp; documentation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="kalpurush.css">
+<meta name="description" content="Kalpurush is a free open-source Bengali display typeface with six styles. Interactive specimen, sandbox and documentation.">
+<link rel="stylesheet" href="kalpurush.cdn.css">
 <style>
-  body{font-family:"Kalpurush",serif;margin:2rem auto;max-width:56rem;padding:0 1rem;line-height:1.6;font-size:1.5rem}
-  .row{display:grid;grid-template-columns:9rem 1fr;gap:1rem;align-items:baseline;border-bottom:1px solid #8884;padding:.35rem 0}
-  small{font:12px/1.2 system-ui,sans-serif;color:#888}
-  .conj{font-size:3rem;letter-spacing:.02em}
-  @media (prefers-color-scheme:dark){body{background:#111;color:#eee}}
-</style></head><body>
-<h1 style="font-weight:700">Kalpurush — কলপুরুষ</h1>
-<p><small>Synthetic SemiBold / Bold / Italic generated from Kalpurush Regular. Check conjuncts and matras below.</small></p>
-<div class="row"><small>400 Regular</small><span style="font-weight:400">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello 2026</span></div>
-<div class="row"><small>600 SemiBold</small><span style="font-weight:600">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello 2026</span></div>
-<div class="row"><small>700 Bold</small><span style="font-weight:700">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello 2026</span></div>
-<div class="row"><small>400 Italic</small><span style="font-style:italic">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello 2026</span></div>
-<div class="row"><small>600 Italic</small><span style="font-weight:600;font-style:italic">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello 2026</span></div>
-<div class="row"><small>700 Italic</small><span style="font-weight:700;font-style:italic">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello 2026</span></div>
-<h2 style="font-weight:600">Stress test: conjuncts &amp; matras</h2>
-<p class="conj" style="font-weight:700">ক্ষ শ্রী দ্ধ ন্ত্র ষ্ট্র স্ব র্ক্ষ কু কৃ গু শু</p>
-<p class="conj" style="font-weight:700;font-style:italic">ক্ষ শ্রী দ্ধ ন্ত্র ষ্ট্র স্ব র্ক্ষ কু কৃ গু শু</p>
-</body></html>
+  :root{
+    --bg:#10131a; --panel:#191d27; --panel2:#20252f; --line:#2c3341;
+    --text:#e9e9f0; --muted:#9aa1b2; --gold:#d8a64a; --green:#49b07a;
+    --blue:#6ea8e8;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Kalpurush", Georgia, serif;
+    font-size:18px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  small, .ui{font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif}
+  a{color:var(--blue)}
+  .wrap{max-width:64rem; margin:0 auto; padding:0 1.2rem}
+
+  /* ---------- hero ---------- */
+  header.hero{
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(1200px 400px at 20% -10%, #1d2536 0%, transparent 60%), var(--bg);
+    padding:4.5rem 0 3.5rem;
+  }
+  .hero h1{
+    margin:0; font-size:5.5rem; font-weight:700; line-height:1.05; letter-spacing:.01em;
+  }
+  .hero h1 .bn{display:block; font-weight:400; font-size:3.4rem; color:var(--gold)}
+  .hero .tag{
+    margin-top:1rem; font-size:1.15rem; color:var(--muted); max-width:46rem;
+  }
+  .badges{margin-top:1.4rem; display:flex; gap:.5rem; flex-wrap:wrap}
+  .badge{
+    font:13px/1.4 ui-sans-serif,system-ui,sans-serif;
+    border:1px solid var(--line); color:var(--muted);
+    padding:.3rem .7rem; border-radius:999px; background:var(--panel);
+  }
+  .badge b{color:var(--text); font-weight:600}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(16,19,26,.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; gap:.2rem; flex-wrap:wrap}
+  nav a{
+    font:14px/1.3 ui-sans-serif,system-ui,sans-serif; text-decoration:none;
+    color:var(--muted); padding:.6rem .9rem; border-radius:8px;
+  }
+  nav a:hover{color:var(--text); background:var(--panel)}
+  nav a.cur{color:var(--gold)}
+
+  /* ---------- sections ---------- */
+  section{padding:3.2rem 0; border-bottom:1px solid var(--line)}
+  h2{
+    font-size:2.1rem; font-weight:700; margin:0 0 .4rem;
+    display:flex; align-items:baseline; gap:.6rem;
+  }
+  h2 .n{
+    font:14px/1 ui-sans-serif,system-ui,sans-serif; color:var(--gold);
+    letter-spacing:.08em;
+  }
+  .lead{color:var(--muted); margin:.2rem 0 1.6rem; max-width:52rem}
+  .panel{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:1.3rem 1.5rem}
+
+  /* ---------- style rows ---------- */
+  .styles{display:grid; gap:.7rem}
+  .style-row{
+    display:grid; grid-template-columns:8.5rem 1fr; gap:1rem; align-items:baseline;
+    border-bottom:1px solid var(--line); padding:.9rem 0;
+  }
+  .style-row:last-child{border-bottom:none}
+  .style-row .lbl{
+    font:13px/1.5 ui-sans-serif,system-ui,sans-serif; color:var(--muted); white-space:pre-line;
+  }
+  .style-row .lbl b{color:var(--text); font-weight:600}
+  .sample{font-size:1.9rem; line-height:1.5}
+  @media (max-width:560px){
+    .style-row{grid-template-columns:1fr; gap:.2rem}
+    .hero h1{font-size:4rem} .hero h1 .bn{font-size:2.6rem}
+  }
+
+  /* ---------- stress test ---------- */
+  .conj{
+    font-size:2.6rem; line-height:1.9; letter-spacing:.02em;
+    margin:.3rem 0 1.2rem;
+  }
+  .conj small{display:block; margin-top:.4rem; font-size:14px}
+
+  /* ---------- sandbox ---------- */
+  .sandbox-grid{display:grid; grid-template-columns:1fr; gap:1rem}
+  .controls{
+    display:flex; flex-wrap:wrap; gap:1rem 1.4rem; align-items:center;
+    padding:.8rem 1rem; background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+  }
+  .controls label{font:13px/1.4 ui-sans-serif,system-ui,sans-serif; color:var(--muted)}
+  .controls input[type=range]{width:9rem; accent-color:var(--gold)}
+  .controls select{
+    font:inherit; color:var(--text); background:var(--panel);
+    border:1px solid var(--line); border-radius:8px; padding:.25rem .5rem;
+  }
+  .controls .val{font:13px/1 ui-sans-serif,system-ui,sans-serif; color:var(--gold); min-width:4.2rem; display:inline-block}
+  #sb-text{
+    width:100%; min-height:7rem; resize:vertical;
+    font:15px/1.5 ui-monospace,"Cascadia Mono",Menlo,monospace;
+    color:var(--text); background:var(--panel2); border:1px solid var(--line);
+    border-radius:12px; padding:.7rem .9rem;
+  }
+  #sb-preview{
+    min-height:9rem; padding:1.4rem 1.6rem; border-radius:12px;
+    background:linear-gradient(180deg, #151923 0%, #10131a 100%);
+    border:1px solid var(--line);
+    white-space:pre-wrap; word-break:break-word;
+    font-size:34px; font-weight:400; font-style:normal; line-height:1.6; letter-spacing:normal;
+  }
+  .presets{display:flex; flex-wrap:wrap; gap:.5rem}
+  .presets button{
+    font:13px/1.3 ui-sans-serif,system-ui,sans-serif; cursor:pointer;
+    color:var(--muted); background:var(--panel2); border:1px solid var(--line);
+    border-radius:999px; padding:.35rem .8rem;
+  }
+  .presets button:hover{color:var(--text); border-color:var(--gold)}
+  .sb-meta{font:13px/1.5 ui-sans-serif,system-ui,sans-serif; color:var(--muted)}
+  .sb-meta b{color:var(--gold); font-weight:600}
+  .sandboxed-demo{margin-top:1rem}
+  .sandboxed-demo iframe{
+    width:100%; height:9rem; border:1px dashed var(--line); border-radius:12px;
+    background:#14181f;
+  }
+  .sandbox-note{
+    font:12.5px/1.5 ui-sans-serif,system-ui,sans-serif; color:var(--muted);
+    margin-top:.6rem; max-width:60rem;
+  }
+
+  /* ---------- typeset ---------- */
+  .typeset p{font-size:1.45rem; text-align:justify}
+  .typeset .drop{
+    float:left; font-size:3.6rem; line-height:.9; padding:.2rem .5rem 0 0;
+    font-weight:700; color:var(--gold);
+  }
+
+  /* ---------- character grid ---------- */
+  .chargrid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(2.6rem,1fr));
+    gap:.35rem; background:var(--panel2); border:1px solid var(--line);
+    border-radius:12px; padding:1rem;
+  }
+  .chargrid .c{
+    font-size:1.6rem; text-align:center; line-height:1.2;
+    aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+    border-radius:6px;
+  }
+  .chargrid .c:hover{background:var(--panel); outline:1px solid var(--line)}
+  .chargrid .c.digit{color:var(--gold)}
+  .char-note{font:13px/1.5 ui-sans-serif,system-ui,sans-serif; color:var(--muted); margin-top:.5rem}
+
+  /* ---------- metrics ---------- */
+  .metrics{display:grid; grid-template-columns:repeat(auto-fill,minmax(16rem,1fr)); gap:.7rem}
+  .metric{background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:.9rem 1rem}
+  .metric .k{font:12px/1.4 ui-sans-serif,system-ui,sans-serif; color:var(--muted); letter-spacing:.04em; text-transform:uppercase}
+  .metric .v{font-size:1.35rem; font-weight:700; margin-top:.15rem}
+
+  /* ---------- install ---------- */
+  .install h3{font-size:1.3rem; font-weight:600; margin:1.4rem 0 .5rem}
+  .install h3:first-child{margin-top:0}
+  pre{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:.9rem 1.1rem; overflow-x:auto;
+    font:13.5px/1.6 ui-monospace,"Cascadia Mono",Menlo,monospace; color:#cfd5e4;
+  }
+  pre .c{color:var(--muted)}
+  code{font:13px/1.5 ui-monospace,"Cascadia Mono",Menlo,monospace; background:var(--panel2); padding:.1rem .4rem; border-radius:6px; color:#cfd5e4}
+  ol, ul{padding-left:1.3rem}
+  li{margin:.3rem 0}
+
+  footer{padding:3rem 0 4rem; color:var(--muted)}
+  footer .wrap{display:flex; flex-wrap:wrap; gap:1rem 2rem; justify-content:space-between; align-items:flex-end}
+  footer b{color:var(--text); font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Kalpurush<span class="bn">কলপুরুষ</span></h1>
+    <p class="tag">A free, open-source Bengali display typeface — six styles, one family.
+    Regular, SemiBold, Bold and their italics, generated from Kalpurush Regular v0.258
+    by Tanbin Islam Siyam.</p>
+    <div class="badges">
+      <span class="badge"><b>6 styles</b> · 400 / 600 / 700 + italics</span>
+      <span class="badge"><b>586 glyphs</b> · 91 Bengali · 95 Latin</span>
+      <span class="badge"><b>SIL OFL 1.0</b> · no Reserved Font Name</span>
+      <span class="badge"><b>Web-ready</b> · woff2 + ttf + CDN</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#styles">Styles</a>
+    <a href="#stress">Conjuncts</a>
+    <a href="#sandbox">Sandbox</a>
+    <a href="#typeset">Typeset</a>
+    <a href="#chars">Characters</a>
+    <a href="#metrics">Metrics</a>
+    <a href="#install">Install &amp; use</a>
+    <a href="#license">License</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ==================== STYLES ==================== -->
+<section id="styles">
+  <h2><span class="n">01</span> Styles</h2>
+  <p class="lead">Every style shares the exact same outlines, metrics and OpenType layout tables as the
+  original Regular — only the weight and slant change. Type the same <code>font-family: "Kalpurush"</code>
+  and switch with <code>font-weight</code> / <code>font-style</code>.</p>
+  <div class="styles">
+    <div class="style-row"><div class="lbl"><b>400</b> Regular<br>Kalpurush-Regular.ttf</div>
+      <div class="sample" style="font-weight:400">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello Kalpurush</div></div>
+    <div class="style-row"><div class="lbl"><b>600</b> SemiBold<br>Kalpurush-SemiBold.ttf</div>
+      <div class="sample" style="font-weight:600">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello Kalpurush</div></div>
+    <div class="style-row"><div class="lbl"><b>700</b> Bold<br>Kalpurush-Bold.ttf</div>
+      <div class="sample" style="font-weight:700">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello Kalpurush</div></div>
+    <div class="style-row"><div class="lbl"><b>400</b> Italic<br>Kalpurush-Italic.ttf</div>
+      <div class="sample" style="font-weight:400;font-style:italic">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello Kalpurush</div></div>
+    <div class="style-row"><div class="lbl"><b>600</b> SemiBold Italic<br>Kalpurush-SemiBoldItalic.ttf</div>
+      <div class="sample" style="font-weight:600;font-style:italic">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello Kalpurush</div></div>
+    <div class="style-row"><div class="lbl"><b>700</b> Bold Italic<br>Kalpurush-BoldItalic.ttf</div>
+      <div class="sample" style="font-weight:700;font-style:italic">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello Kalpurush</div></div>
+  </div>
+</section>
+
+<!-- ==================== STRESS TEST ==================== -->
+<section id="stress">
+  <h2><span class="n">02</span> Conjunct &amp; matra stress test</h2>
+  <p class="lead">Bengali joins letters through the headline (conjuncts) and stacks vowel signs
+  (matras). These are the glyphs that break in low-quality synthetic fonts — here they are
+  unchanged from the original, in Bold and Bold Italic.</p>
+  <div class="panel">
+    <p class="conj" style="font-weight:700">ক্ষ শ্রী দ্ধ ন্ত্র ষ্ট্র স্ব র্ক্ষ কু কৃ গু শু জ্ঞ হ্য ব্য ক্ল গ্র স্ম</p>
+    <p class="conj" style="font-weight:700;font-style:italic">ক্ষ শ্রী দ্ধ ন্ত্র ষ্ট্র স্ব র্ক্ষ কু কৃ গু শু জ্ঞ হ্য ব্য ক্ল গ্র স্ম</p>
+    <p class="conj" style="font-weight:400;font-size:2.2rem">গোড়ো চোড়ো হাড়ো ঝাড়ো ডাকো ঢাকো — মাটির মানুষ মাটির কথা</p>
+    <p class="conj" style="font-weight:400;font-size:2.2rem;font-style:italic">গোড়ো চোড়ো হাড়ো ঝাড়ো ডাকো ঢাকো — মাটির মানুষ মাটির কথা</p>
+  </div>
+</section>
+
+<!-- ==================== SANDBOX ==================== -->
+<section id="sandbox">
+  <h2><span class="n">03</span> Sandbox — live type tester</h2>
+  <p class="lead">Type or paste anything — Bengali, English, or mixed — and watch it render in
+  Kalpurush in real time. The whole tester runs in your browser; fonts load from the CDN
+  (<code>kalpurush.cdn.css</code>).</p>
+
+  <div class="sandbox-grid">
+    <div class="panel">
+      <div class="controls">
+        <label>Size <input type="range" id="sb-size" min="14" max="96" value="34"><span class="val" id="sb-size-v">34 px</span></label>
+        <label>Weight
+          <select id="sb-weight">
+            <option value="400">400 Regular</option>
+            <option value="600">600 SemiBold</option>
+            <option value="700">700 Bold</option>
+          </select>
+        </label>
+        <label><input type="checkbox" id="sb-italic"> Italic</label>
+        <label>Line <input type="range" id="sb-lh" min="1" max="2.4" step="0.1" value="1.6"><span class="val" id="sb-lh-v">1.6</span></label>
+        <label>Tracking <input type="range" id="sb-ls" min="-0.03" max="0.25" step="0.01" value="0"><span class="val" id="sb-ls-v">0.00</span></label>
+      </div>
+
+      <div class="presets" style="margin:1rem 0 .7rem">
+        <button data-preset="bengali">বাংলাদেশের স্বাধীনতা যুদ্ধ</button>
+        <button data-preset="pangram">বাংলাদেশের প্রধানমন্ত্রী শেখ হাসিনা বাংলাদেশের প্রধানমন্ত্রী।</button>
+        <button data-preset="conjuncts">ক্ষ শ্রী দ্ধ ন্ত্র ষ্ট্র স্ব র্ক্ষ</button>
+        <button data-preset="latin">The quick brown fox jumps over the lazy dog. 0123456789</button>
+        <button data-preset="mixed">কলপুরুষ Kalpurush — ফন্ট ২০২৬ · font</button>
+      </div>
+
+      <textarea id="sb-text" spellcheck="false">বাংলাদেশের স্বাধীনতা যুদ্ধ — Hello Kalpurush 2026</textarea>
+
+      <div id="sb-preview" aria-live="polite"></div>
+
+      <p class="sb-meta" id="sb-meta"></p>
+    </div>
+
+    <div class="sandboxed-demo">
+      <div class="panel">
+        <strong>Sandboxed preview</strong> — an isolated <code>&lt;iframe sandbox="allow-scripts"&gt;</code>
+        rendering the font in a neutral document, the way a third-party embed would see it:
+        <iframe sandbox="allow-scripts" srcdoc="&lt;!doctype html&gt;&lt;html lang=&quot;bn&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/sisir-sinha/Kalpurush@main/kalpurush.cdn.css&quot;&gt;&lt;style&gt;body{margin:0;padding:1.4rem 1.6rem;font-family:'Kalpurush',serif;font-size:2.2rem;font-weight:700;color:#e9e9f0;background:#14181f}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;কলপুরুষ বাংলাদেশ — Kalpurush sandbox preview&lt;/body&gt;&lt;/html&gt;"></iframe>
+        <p class="sandbox-note">The iframe above uses the HTML <code>sandbox</code> attribute: it has no access to
+        this page's scripts or styles — only the CDN font. This mirrors how the font behaves when
+        embedded in a sandboxed widget.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TYPESET ==================== -->
+<section id="typeset">
+  <h2><span class="n">04</span> Typeset</h2>
+  <p class="lead">Kalpurush as a reading face at body size — generous counters, clear matras,
+  unchanged shaping from the original.</p>
+  <div class="panel typeset">
+    <p><span class="drop">ক</span>লপুরুষ একটি উন্মুক্ত সুত্রে প্রকাশিত বাংলা ডিসপ্লে ফন্ট। বাংলাদেশের স্বাধীনতা যুদ্ধ থেকে শুরু করে আধুনিক ডিজাইনের সব স্তরে বাংলা লেখার গুণমান ধরে রাখার জন্য এটি তৈরি করা হয়েছে। সাধারণ, অভিব্যক্তিশীল ও আনুষ্ঠানিক — প্রতিটি ক্ষেত্রে স্থিতিশীল।</p>
+    <p style="font-style:italic;margin-top:.8rem"><span class="drop" style="font-style:italic">ঐ</span>তিহ্য ও আধুনিকতার মধ্যে সংলগ্ন এক ফন্ট — যা পুরোনো বাংলা জিরো থেকে শুরু করে আজকের স্ক্রিনের দিকে হাঁটে চলেছে। চোখে ধরা পড়ে না, কানে শোনা যায় — বাংলা লেখায় তার ভাব।</p>
+  </div>
+</section>
+
+<!-- ==================== CHARACTERS ==================== -->
+<section id="chars">
+  <h2><span class="n">05</span> Character set</h2>
+  <p class="lead">The exact coverage of every Kalpurush file (identical across all six styles):
+  91 Bengali codepoints, the full printable Latin range, digits and punctuation.</p>
+
+  <h3 style="font-size:1.25rem;font-weight:600;margin:1.2rem 0 .3rem">Bengali — 91 characters (U+0980–U+09FF)</h3>
+  <div class="chargrid">
+    <div class="charrow" style="display:contents">
+      <span class="c">ঁ</span><span class="c">ং</span><span class="c">ঃ</span><span class="c">অ</span><span class="c">আ</span><span class="c">ই</span><span class="c">ঈ</span><span class="c">উ</span><span class="c">ঊ</span><span class="c">ঋ</span><span class="c">ঌ</span><span class="c">এ</span>
+      <span class="c">ঐ</span><span class="c">ও</span><span class="c">ঔ</span><span class="c">ক</span><span class="c">খ</span><span class="c">গ</span><span class="c">ঘ</span><span class="c">ঙ</span><span class="c">চ</span><span class="c">ছ</span><span class="c">জ</span><span class="c">ঝ</span>
+      <span class="c">ঞ</span><span class="c">ট</span><span class="c">ঠ</span><span class="c">ড</span><span class="c">ঢ</span><span class="c">ণ</span><span class="c">ত</span><span class="c">থ</span><span class="c">দ</span><span class="c">ধ</span><span class="c">ন</span><span class="c">প</span>
+      <span class="c">ফ</span><span class="c">ব</span><span class="c">ভ</span><span class="c">ম</span><span class="c">য</span><span class="c">র</span><span class="c">ল</span><span class="c">শ</span><span class="c">ষ</span><span class="c">স</span><span class="c">হ</span><span class="c">়</span>
+      <span class="c">ঽ</span><span class="c">া</span><span class="c">ি</span><span class="c">ী</span><span class="c">ু</span><span class="c">ূ</span><span class="c">ৃ</span><span class="c">ৄ</span><span class="c">ে</span><span class="c">ৈ</span><span class="c">ো</span><span class="c">ৌ</span>
+      <span class="c">্</span><span class="c">ৎ</span><span class="c">ৗ</span><span class="c">ড়</span><span class="c">ঢ়</span><span class="c">য়</span><span class="c">ৠ</span><span class="c">ৡ</span><span class="c">ৢ</span><span class="c">ৣ</span><span class="c">০</span><span class="c">১</span>
+      <span class="c">২</span><span class="c">৩</span><span class="c">৪</span><span class="c">৫</span><span class="c">৬</span><span class="c">৭</span><span class="c">৮</span><span class="c">৯</span><span class="c">ৰ</span><span class="c">ৱ</span><span class="c">৲</span><span class="c">৳</span>
+      <span class="c">৴</span><span class="c">৵</span><span class="c">৶</span><span class="c">৷</span><span class="c">৸</span><span class="c">৹</span><span class="c">৺</span>
+    </div>
+  </div>
+  <p class="char-note">Includes all vowel signs (া ি ী ু ূ ৃ ৄ ে ৈ ো ৌ), the bare forms ঽ ়, conjunct marks ্ ৎ ৗ ড় ঢ়,
+  Bengali digits <b>০–৯</b>, ৰ ৱ ৲ and the Bengali rupee sign <b>৳</b>.</p>
+
+  <h3 style="font-size:1.25rem;font-weight:600;margin:1.6rem 0 .3rem">Latin — 95 characters (U+0020–U+007E)</h3>
+  <div class="chargrid">
+    <div class="charrow" style="display:contents">
+      <span class="c"> </span><span class="c">!</span><span class="c">"</span><span class="c">#</span><span class="c">$</span><span class="c">%</span><span class="c">&amp;</span><span class="c">'</span><span class="c">(</span><span class="c">)</span><span class="c">*</span><span class="c">+</span>
+      <span class="c">,</span><span class="c">-</span><span class="c">.</span><span class="c">/</span><span class="c">0</span><span class="c">1</span><span class="c">2</span><span class="c">3</span><span class="c">4</span><span class="c">5</span><span class="c">6</span><span class="c">7</span>
+      <span class="c">8</span><span class="c">9</span><span class="c">:</span><span class="c">;</span><span class="c">&lt;</span><span class="c">=</span><span class="c">&gt;</span><span class="c">?</span><span class="c">@</span><span class="c">A</span><span class="c">B</span><span class="c">C</span>
+      <span class="c">D</span><span class="c">E</span><span class="c">F</span><span class="c">G</span><span class="c">H</span><span class="c">I</span><span class="c">J</span><span class="c">K</span><span class="c">L</span><span class="c">M</span><span class="c">N</span><span class="c">O</span>
+      <span class="c">P</span><span class="c">Q</span><span class="c">R</span><span class="c">S</span><span class="c">T</span><span class="c">U</span><span class="c">V</span><span class="c">W</span><span class="c">X</span><span class="c">Y</span><span class="c">Z</span><span class="c">[</span>
+      <span class="c">\</span><span class="c">]</span><span class="c">^</span><span class="c">_</span><span class="c">`</span><span class="c">a</span><span class="c">b</span><span class="c">c</span><span class="c">d</span><span class="c">e</span><span class="c">f</span><span class="c">g</span>
+      <span class="c">h</span><span class="c">i</span><span class="c">j</span><span class="c">k</span><span class="c">l</span><span class="c">m</span><span class="c">n</span><span class="c">o</span><span class="c">p</span><span class="c">q</span><span class="c">r</span><span class="c">s</span>
+      <span class="c">t</span><span class="c">u</span><span class="c">v</span><span class="c">w</span><span class="c">x</span><span class="c">y</span><span class="c">z</span><span class="c">{</span><span class="c">|</span><span class="c">}</span><span class="c">~</span>
+    </div>
+  </div>
+  <p class="char-note">Plus general punctuation: en/em dash – —, quotes ' ‘ “ ”, ellipsis …, minus sign −,
+  ZWJ/ZWNJ and combining dotted circle (matra base).</p>
+</section>
+
+<!-- ==================== METRICS ==================== -->
+<section id="metrics">
+  <h2><span class="n">06</span> Metrics &amp; specs</h2>
+  <p class="lead">Measured from the actual font binaries — identical for all six styles.</p>
+  <div class="metrics">
+    <div class="metric"><div class="k">Units per em</div><div class="v">1000</div></div>
+    <div class="metric"><div class="k">Typo ascender / descender</div><div class="v">1000 / −400</div></div>
+    <div class="metric"><div class="k">Typo line gap</div><div class="v">175</div></div>
+    <div class="metric"><div class="k">hhea ascent / descent</div><div class="v">1000 / −400</div></div>
+    <div class="metric"><div class="k">Italic angle</div><div class="v">12°</div></div>
+    <div class="metric"><div class="k">Weights</div><div class="v">400 · 600 · 700</div></div>
+    <div class="metric"><div class="k">Glyphs</div><div class="v">586</div></div>
+    <div class="metric"><div class="k">Unicode map</div><div class="v">210 codepoints</div></div>
+    <div class="metric"><div class="k">GSUB lookups</div><div class="v">18 (ligatures &amp; chains)</div></div>
+    <div class="metric"><div class="k">GPOS lookups</div><div class="v">2 (mark positioning)</div></div>
+    <div class="metric"><div class="k">Hinting</div><div class="v">removed (grayscale only)</div></div>
+    <div class="metric"><div class="k">Version</div><div class="v">0.258 + variants</div></div>
+  </div>
+</section>
+
+<!-- ==================== INSTALL ==================== -->
+<section id="install" class="install">
+  <h2><span class="n">07</span> Install &amp; use</h2>
+
+  <h3>Web — via CDN (no files needed)</h3>
+  <pre><span class="c">&lt;!-- one line loads all six styles --&gt;</span>
+&lt;link rel="stylesheet" href="kalpurush.cdn.css"&gt;
+&lt;style&gt;
+  body { font-family: "Kalpurush", serif; font-weight: 600; }
+&lt;/style&gt;</pre>
+  <p>The CDN stylesheet references jsDelivr, which serves the font files straight from this
+  repository. If you host the files yourself, <a href="kalpurush.css">kalpurush.css</a> (relative paths)
+  and <a href="kalpurush.scss">kalpurush.scss</a> (Sass, configurable path) are ready to use.</p>
+
+  <h3>Desktop — install the font files</h3>
+  <ol>
+    <li><b>Windows:</b> select all <code>ttf/*.ttf</code> → right-click → <i>Install for all users</i>.</li>
+    <li><b>macOS:</b> open <code>ttf/*.ttf</code> in Font Book → <i>Install Font</i>.</li>
+    <li><b>Linux:</b> copy to <code>~/.local/share/fonts</code>, then <code>fc-cache -f</code>.</li>
+  </ol>
+  <p>After installing, “Kalpurush” appears as one family — Regular / Italic / Bold / Bold Italic.
+  The two SemiBold styles show up as a separate family “Kalpurush SemiBold” in apps that don’t read
+  weight-based families (e.g. Word), and as weight <code>600</code> of “Kalpurush” in browsers/CSS.</p>
+
+  <h3>Design apps</h3>
+  <p>Drop the <code>ttf/</code> files into your project and use the family name
+  <code>Kalpurush</code> — SemiBold is weight 600, Bold is 700, Italic is <code>font-style: italic</code>.</p>
+
+  <h3>Rebuilding the styles yourself</h3>
+  <pre><span class="c"># tweak STYLES / ITALIC_ANGLE / VERT_RATIO at the top of the script</span>
+pip install fonttools skia-pathops brotli
+python source/build_kalpurush.py Kalpurush.ttf out</pre>
+  <p>See <a href="source/build_kalpurush.py">source/build_kalpurush.py</a> for the full method: emboldening
+  via outline offsetting (skia-pathops stroke + union), a 12° oblique italic skew with skewed GPOS anchors,
+  and no changes to GSUB/GPOS/cmap — so shaping is identical to Regular.</p>
+</section>
+
+<!-- ==================== LICENSE ==================== -->
+<section id="license">
+  <h2><span class="n">08</span> License &amp; credits</h2>
+  <div class="panel">
+    <p><b>Kalpurush is released under the SIL Open Font License 1.0</b> — free to use, study,
+    modify and redistribute, including commercial work, as long as the license is preserved.</p>
+    <p>The font carries <b>no Reserved Font Name</b> clause, so derivatives may use the name
+    “Kalpurush”. (If you obtain a copy from elsewhere, verify the embedded license first —
+    change the <code>FAMILY</code> constant in <code>source/build_kalpurush.py</code> if it declares one.)</p>
+    <p><b>Credits:</b> Kalpurush Regular v0.258 by Tanbin Islam Siyam, developed under the
+    <i>Avro Font Development Project</i> (<a href="http://www.omicronlab.com">omicronlab.com</a>).
+    SemiBold, Bold and Italic variants are synthetic styles generated from the Regular outlines.
+    OFL FAQ: <a href="http://scripts.sil.org/OFL">scripts.sil.org/OFL</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div style="font-size:1.6rem;font-weight:700">Kalpurush · কলপুরুষ</div>
+      <div>Open-source Bengali display typeface · SIL OFL 1.0 · v0.258 + synthetic styles</div>
+    </div>
+    <div>
+      <div><b>Source:</b> github.com/sisir-sinha/Kalpurush</div>
+      <div>Designer: Tanbin Islam Siyam · Avro Font Development Project</div>
+      <div><a href="index.html">← Homepage</a></div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+(function(){
+  var text    = document.getElementById('sb-text');
+  var preview = document.getElementById('sb-preview');
+  var meta    = document.getElementById('sb-meta');
+  var size    = document.getElementById('sb-size');
+  var weight  = document.getElementById('sb-weight');
+  var italic  = document.getElementById('sb-italic');
+  var lh      = document.getElementById('sb-lh');
+  var ls      = document.getElementById('sb-ls');
+
+  function render(){
+    var t = text.value;
+    preview.textContent = t || '—';
+    preview.style.fontSize = size.value + 'px';
+    preview.style.fontWeight = weight.value;
+    preview.style.fontStyle = italic.checked ? 'italic' : 'normal';
+    preview.style.lineHeight = lh.value;
+    preview.style.letterSpacing = ls.value + 'em';
+
+    document.getElementById('sb-size-v').textContent = size.value + ' px';
+    document.getElementById('sb-lh-v').textContent = lh.value;
+    document.getElementById('sb-ls-v').textContent = (+ls.value).toFixed(2);
+
+    var chars = t.length;
+    var bn = 0;
+    for (var i = 0; i < chars; i++){
+      var c = t.charCodeAt(i);
+      if (c >= 0x0980 && c <= 0x09FF) bn++;
+    }
+    meta.innerHTML = chars + ' characters · ' + bn + ' Bengali · ' +
+      (chars - bn) + ' other';
+  }
+
+  var presets = {
+    bengali:  'বাংলাদেশের স্বাধীনতা যুদ্ধ — বাংলাদেশ স্বাধীন, সমৃদ্ধ ও গণতান্ত্রিক।',
+    pangram:  'বাংলাদেশের প্রধানমন্ত্রী শেখ হাসিনা বাংলাদেশের প্রধানমন্ত্রী।',
+    conjuncts:'ক্ষ শ্রী দ্ধ ন্ত্র ষ্ট্র স্ব র্ক্ষ কু কৃ গু শু জ্ঞ হ্য ব্য ক্ল গ্র স্ম',
+    latin:    'The quick brown fox jumps over the lazy dog. 0123456789 — “Hello!”',
+    mixed:    'কলপুরুষ Kalpurush — ফন্ট ২০২৬ · font · সব কিছু'
+  };
+
+  text.addEventListener('input', render);
+  [size, weight, italic, lh, ls].forEach(function(el){
+    el.addEventListener('input', render);
+    el.addEventListener('change', render);
+  });
+  document.querySelectorAll('.presets button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      text.value = presets[btn.dataset.preset];
+      render();
+    });
+  });
+  render();
+})();
+</script>
+</body>
+</html>
